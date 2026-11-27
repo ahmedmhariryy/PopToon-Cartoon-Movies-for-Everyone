@@ -1,0 +1,454 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+body {
+    overflow-x: hidden;
+    font-family: "Instrument Sans";
+    transition: background 0.3s ease-in-out, color 0.3s ease;
+    background: var(--surface);
+
+    cursor: none;
+    
+    ::selection {
+        background-color: rgb(43, 181, 168, 0.8);
+        backdrop-filter: blur(10px);
+        color: #121212;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--dark-color);
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Bricolage Grotesque";
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    cursor: none;
+}
+
+i {
+    cursor: none;
+}
+
+li {
+    cursor: none;
+    list-style: none;
+}
+
+section {
+    padding: 50px 0;
+}
+
+
+.mainButton,
+a.mainButton {
+    overflow: hidden;
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--primary-color);
+    padding: 8px 16px;
+    border-radius: $border-r;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        display: block;
+        width: 10px;
+        height: 100%;
+        background-color: var(--primary-color);
+        opacity: 0.2;
+        transition:
+            all linear 0.5s,
+            width linear 0.5s 0.5s;
+    }
+
+    &::before {
+        right: 0%;
+        border-radius: 0 $border-r $border-r 0;
+    }
+
+    &::after {
+        left: 0%;
+        border-radius: $border-r 0 0 $border-r;
+    }
+
+    &:hover::before {
+        width: 50%;
+        transition:
+            all linear 0.5s 0.5s,
+            width linear 0.5s;
+        opacity: 1;
+    }
+
+    &:hover::after {
+        width: 50%;
+        transition:
+            all linear 0.5s 0.5s,
+            width linear 0.5s;
+        opacity: 1;
+    }
+
+    span {
+        position: relative;
+        font-size: 14px;
+        font-weight: 600;
+        transition-duration: .5s;
+        z-index: 3;
+
+        i {
+            margin-right: 5px;
+            color: var(--dark-color);
+            color: var(--primary-color);
+            transition-duration: .5s;
+        }
+    }
+
+    &:hover {
+        overflow: hidden;
+
+        span {
+            color: #000;
+
+            i {
+                color: #000;
+            }
+        }
+    }
+
+}
+
+.title {
+    @include flex($js : start, $g :15px);
+    padding: 15px 0px;
+
+    h2 {
+        font-size: clamp(25px, 6vw, 50px);
+        font-weight: 700;
+        letter-spacing: -2px;
+        margin: 0;
+
+        color: var(--text);
+
+        text-shadow: var(--text-shadow);
+    }
+
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.list-toast {
+    background: rgba(11, 17, 19, 0.88) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(20, 184, 166, 0.25);
+    border-radius: 14px;
+    padding: 16px 18px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.35),
+        0 0 15px rgba(20, 184, 166, 0.06);
+
+    .list-toast__title {
+        color: #F5F5F5;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+    }
+
+    .list-toast__icon {
+        margin-inline-end: 12px;
+    }
+
+    .list-toast__progress {
+        height: 3px;
+        border-radius: 10px;
+        background: #14B8A6;
+    }
+
+    // Add to list
+    &--add {
+        border-color: rgba(20, 184, 166, 0.3);
+
+        .list-toast__progress {
+            background: #14B8A6 !important;
+        }
+
+        .list-toast__icon.swal2-success {
+            border-color: #14B8A6 !important;
+
+            [class^="swal2-success-line"] {
+                background-color: #14B8A6 !important;
+            }
+
+            .swal2-success-ring {
+                border-color: rgba(20, 184, 166, 0.25) !important;
+            }
+        }
+    }
+
+    // Remove from list
+    &--remove {
+        border-color: rgba(248, 113, 113, 0.3);
+
+        .list-toast__progress {
+            background: #F87171 !important;
+        }
+
+        .list-toast__icon.swal2-error {
+            border-color: #F87171 !important;
+
+            [class^="swal2-x-mark-line"] {
+                background-color: #F87171 !important;
+            }
+        }
+    }
+}
+
+@include responsive(350) {
+    .list-toast {
+        width: 200px;
+        padding: 10px 12px;
+
+        .list-toast__title {
+            font-size: 11px;
+        }
+    }
+}
+
+@include responsive(450) {
+    .list-toast {
+        width: 250px;
+        max-width: 320px;
+        padding: 12px 14px;
+        border-radius: 11px;
+
+        .list-toast__title {
+            font-size: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        .list-toast__icon {
+            margin-inline-end: 8px;
+            transform: scale(0.9);
+        }
+
+        .list-toast__progress {
+            height: 2px;
+        }
+    }
+}
+
+@include responsive(650) {
+    .list-toast {
+        width: initial;
+        padding: 14px 16px;
+        border-radius: 12px;
+
+        .list-toast__title {
+            font-size: 13px;
+        }
+
+        .list-toast__icon {
+            margin-inline-end: 10px;
+        }
+    }
+}
+
+.demo {
+    min-height: 100svh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.ct-loading {
+    overflow: hidden;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    max-height: 100svh;
+    z-index: 99999;
+    overflow: hidden;
+}
+
+.loading>svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.loading .cl {
+    transform-origin: 0 0;
+}
+
+.loading .cr {
+    transform-origin: 1200px 0;
+}
+
+@keyframes openL {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(.14);
+    }
+}
+
+@keyframes openR {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(.14);
+    }
+}
+
+.loading .valance {
+    --tile: clamp(64px, 7vw, 110px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--tile) * 1.4);
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22140%22 viewBox=%220 0 100 140%22%3E%3Cdefs%3E%3ClinearGradient id=%22f%22 gradientUnits=%22userSpaceOnUse%22 x1=%220%22 y1=%220%22 x2=%22100%22 y2=%220%22%3E%3Cstop offset=%220%22 stop-color=%22%23000%22 stop-opacity=%22.4%22/%3E%3Cstop offset=%22.3%22 stop-color=%22%23fff%22 stop-opacity=%22.16%22/%3E%3Cstop offset=%22.55%22 stop-color=%22%23000%22 stop-opacity=%22.12%22/%3E%3Cstop offset=%22.8%22 stop-color=%22%23000%22 stop-opacity=%22.32%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%22.4%22/%3E%3C/linearGradient%3E%3ClinearGradient id=%22v%22 gradientUnits=%22userSpaceOnUse%22 x1=%220%22 y1=%220%22 x2=%220%22 y2=%22108%22%3E%3Cstop offset=%220%22 stop-color=%22%23000%22 stop-opacity=%22.5%22/%3E%3Cstop offset=%22.25%22 stop-color=%22%23000%22 stop-opacity=%22.08%22/%3E%3Cstop offset=%22.65%22 stop-color=%22%23000%22 stop-opacity=%220%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%22.55%22/%3E%3C/linearGradient%3E%3ClinearGradient id=%22s%22 x1=%220%22 y1=%220%22 x2=%220%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23000%22 stop-opacity=%22.45%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%220%22/%3E%3C/linearGradient%3E%3Cpath id=%22b%22 d=%22M-2,0 H102 V70 L100,70 Q50,108 0,70 L-2,70 Z%22/%3E%3C/defs%3E%3Crect x=%220%22 y=%2270%22 width=%22100%22 height=%2270%22 fill=%22url(%23s)%22/%3E%3Cuse href=%22%23b%22 fill=%22%230A6B62%22/%3E%3Cuse href=%22%23b%22 fill=%22url(%23f)%22/%3E%3Cuse href=%22%23b%22 fill=%22url(%23v)%22/%3E%3Cpath d=%22M-100,70 Q-50,108 0,70 Q50,108 100,70 Q150,108 200,70%22 fill=%22none%22 stroke=%22%23D9FF66%22 stroke-width=%224%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E") repeat-x 0 0 / var(--tile) auto;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .loading .cl,
+    .loading .cr {
+        animation-duration: .01s !important;
+    }
+}
+
+
+.mouse,
+.mouse-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+}
+
+.mouse {
+    @include size(6px, 6px);
+    background-color: var(--primary-color);
+}
+
+.mouse-follower {
+    @include size(35px, 35px);
+    border: 1px solid var(--primary-color);
+    transition:
+        width .3s ease,
+        height .3s ease,
+        background-color .3s ease,
+        opacity .3s ease;
+
+    &.focus {
+        @include size(55px, 55px);
+        background-color: rgba(255, 255, 255, .08);
+        border-color: var(--primary-color);
+    }
+}
+
+.timeline {
+    @include position($p : fixed, $t : 50%, $l : 50px, $z : 1000);
+    display: block;
+    @include size(5px, 90svh);
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, .2);
+    border-radius: 5px;
+
+    @include responsive(350) {
+        display: none;
+    }
+
+    @include responsive(850) {
+        display: block;
+        @include position($p : fixed, $t : 50%, $l : 15px, $z : 10000);
+    }
+
+    @include responsive(1050) {
+        @include position($p : fixed, $t : 50%, $l : 30px, $z : 10000);
+    }
+
+    .progress {
+        @include position($p : absolute, $t : 0px, $l : 0px);
+        @include size(100%);
+        background-color: var(--primary-color);
+        border-radius: 5px;
+        transition: height .15s linear;
+        overflow: visible;
+        clip-path: none;
+        contain: none;
+
+        >img {
+            @include position($p : absolute, $b : 0px, $l : 50%, $z : 2);
+            transform: translate(-50%, 50%);
+            width: 50px;
+            height: 50px;
+            max-width: none;
+            min-width: 30px;
+            display: block;
+            pointer-events: none;
+        }
+    }
+
+    span {
+        @include position($p : absolute, $t : 0px, $l : 50%, $z : 1);
+        transform: translate(-50%, -50%);
+        @include size(18px, 18px);
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, .2);
+        backdrop-filter: blur(10px);
+        transition: all .3s ease-in-out;
+
+        &.active {
+            background-color: var(--primary-color);
+            @include size(22px, 22px);
+        }
+    }
+}

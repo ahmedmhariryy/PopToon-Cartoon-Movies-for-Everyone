@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- *------ SEO ------* -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Discover PopToon, a fun place to explore animated and cartoon movies. Browse popular, top rated, and trending titles, search by name, filter by genre, and watch trailers for the whole family.">
+
+    <meta name="keywords"
+        content="PopToon, cartoon movies, animated movies, animation, family movies, kids movies, popular movies, top rated movies, trending movies, movie trailers, movie reviews, أفلام كرتون, أفلام أنيميشن, أفلام أطفال, أفلام عائلية, أفلام كرتون جديدة, تريلر أفلام, تقييم أفلام">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PopToon | Cartoon Movies for Everyone">
+    <meta property="og:description"
+        content="Browse popular, top rated, and trending cartoon movies. Search, filter by genre, and watch trailers.">
+    <meta property="og:image" content="https://mando157.github.io/poptoon/images/light_logo.png">
+    <meta property="og:url" content="https://mando157.github.io/poptoon/">
+
+    <link rel="icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <!-- ^ Animate & Wow ^ -->
+    <link rel="stylesheet" href="../css/plugins/animate.min.css">
+    <link rel="stylesheet" href="../css/plugins/animate.css">
+
+    <link rel="stylesheet" href="../css/plugins/sweetaler.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- ! ________________ JS ________________ ! -->
+
+    <!--?------ jQuery ------?-->
+    <script defer src=" ../js/jquery.js"></script>
+
+    <!--?------ Sweet Alert js ------?-->
+    <script defer src="../js/plugins/sweetaler.js"></script>
+
+    <!--?------ Global Functions ------?-->
+    <script defer src="../js/functions.js"></script>
+
+    <!--?------ WOW.js Animations ------?-->
+    <script defer src="../js/plugins/wow.min.js"></script>
+
+
+    <!--?------ Main JavaScript ------?-->
+    <script defer src="../js/bootstrap.bundle.js"></script>
+    <script defer src="./js/movie.js"></script>
+
+    <title>PopToon | Movie page</title>
+</head>
+
+<body>
+    
+    <div class="mouse d-none d-lg-block"></div>
+    <div class="mouse-follower d-none d-lg-block"></div>
+
+    <div class="loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="none" role="img"
+            aria-label="Cinema curtains">
+            <defs>
+                <linearGradient id="folds1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="96" y2="0"
+                    spreadMethod="repeat">
+                    <stop offset="0" stop-color="#000" stop-opacity=".40" />
+                    <stop offset=".30" stop-color="#fff" stop-opacity=".16" />
+                    <stop offset=".55" stop-color="#000" stop-opacity=".12" />
+                    <stop offset=".80" stop-color="#000" stop-opacity=".32" />
+                    <stop offset="1" stop-color="#000" stop-opacity=".40" />
+                </linearGradient>
+                <linearGradient id="folds2" gradientUnits="userSpaceOnUse" x1="20" y1="0" x2="170" y2="0"
+                    spreadMethod="repeat">
+                    <stop offset="0" stop-color="#000" stop-opacity=".16" />
+                    <stop offset=".5" stop-color="#fff" stop-opacity=".07" />
+                    <stop offset="1" stop-color="#000" stop-opacity=".16" />
+                </linearGradient>
+                <linearGradient id="vshade" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#000" stop-opacity=".50" />
+                    <stop offset=".25" stop-color="#000" stop-opacity=".08" />
+                    <stop offset=".65" stop-color="#000" stop-opacity="0" />
+                    <stop offset="1" stop-color="#000" stop-opacity=".55" />
+                </linearGradient>
+            </defs>
+
+            <g class="cl">
+                <rect x="0" y="0" width="606" height="800" fill="#0E8A7E" />
+                <rect x="0" y="0" width="606" height="800" fill="url(#folds1)" />
+                <rect x="0" y="0" width="606" height="800" fill="url(#folds2)" />
+                <rect x="0" y="0" width="606" height="800" fill="url(#vshade)" />
+                <line x1="604" y1="0" x2="604" y2="800" stroke="#D9FF66" stroke-width="4"
+                    vector-effect="non-scaling-stroke" />
+            </g>
+            <g class="cr">
+                <rect x="594" y="0" width="606" height="800" fill="#0E8A7E" />
+                <rect x="594" y="0" width="606" height="800" fill="url(#folds1)" />
+                <rect x="594" y="0" width="606" height="800" fill="url(#folds2)" />
+                <rect x="594" y="0" width="606" height="800" fill="url(#vshade)" />
+                <line x1="596" y1="0" x2="596" y2="800" stroke="#D9FF66" stroke-width="4"
+                    vector-effect="non-scaling-stroke" />
+            </g>
+        </svg>
+        <div class="valance"></div>
+    </div>
+
+    <section id="Movie" class="p-0">
+
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <a class="arrow" href="../index.html"><i class="fa-solid fa-arrow-left"></i></a>
+                    <a href="../index.html">
+                        <img src="../images/dark_logo.png" class="movie-logo" alt="logo">
+                    </a>
+                </div>
+
+                <p class="m-0"><i class="fa-solid fa-caret-left"></i> <span>Reviews</span></p>
+            </div>
+        </nav>
+
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-pause="false"
+            data-bs-ride="carousel">
+            <div class="carousel-inner">
+            </div>
+        </div>
+
+        <div class="movie-details">
+            <div class="container">
+                <div class="row">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="popup" data-popup="reviews" onclick="closePopup('reviews' , '1500')">
+
+        <img src="">
+
+        <div class="popup-element">
+            <i class="fa-solid fa-xmark" onclick="closePopup('reviews' , '1500')"></i>
+
+            <h3>Movie Reviews</h3>
+
+            <div class="content">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

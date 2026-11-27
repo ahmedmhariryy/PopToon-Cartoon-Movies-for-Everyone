@@ -1,0 +1,165 @@
+@use "../abstracts/" as *;
+
+#Home {
+    height: 100svh;
+    .carousel {
+        .scroll-pages {
+            @include position($b: 5%, $r: 0%, $z: 10);
+            @include size(auto, auto);
+
+            .content {
+                @include flex($js: start);
+                gap: 15px;
+                padding-right: 15px;
+
+                .image {
+                    position: relative;
+                    @include size(100px);
+                    overflow: hidden;
+                    border-radius: $border-r;
+                    cursor: none;
+                    border: 1px solid var(--accent-color, #D9FF66);
+                    border-color: color-mix(in srgb, var(--accent-color, #D9FF66) 30%, transparent);
+
+                    @include responsive(350) {
+                        display: none;
+                    }
+
+                    @include responsive(850) {
+                        @include size(70px);
+                        display: block;
+                    }
+
+                    @include responsive(1050) {
+                        @include size(90px);
+                    }
+
+                    &::before {
+                        content: "";
+                        @include position($b: 0px, $l: 0, $z: 2);
+                        display: block;
+                        border-radius: $border-r;
+                        @include size(0, 3px);
+                        background: var(--accent-color, #D9FF66);
+                        transition-delay: .3s;
+                    }
+
+                    &.active {
+                        border: 2px solid var(--primary-color);
+
+                        &::before {
+                            transition-duration: 10s;
+                            transition-timing-function: ease-in-out;
+                            @include size(100%, 3px);
+                        }
+                    }
+
+                    img {
+                        width: 100%;
+                        border-radius: $border-r;
+                    }
+                }
+            }
+        }
+
+        .carousel-inner {
+            .carousel-item {
+                position: relative;
+                height: 100svh;
+
+                &::before {
+                    content: "";
+                    @include position($t: 0, $l: 0, $z: 2);
+                    display: block;
+                    @include size(100%, 100%);
+                    background: linear-gradient(to right,
+                            #080C0B,
+                            transparent);
+                }
+
+                >img {
+                    @include position($t: 50%, $l: 50%);
+                    min-width: 100%;
+                    transform: translate(-50%, -50%) scale(1);
+                    transition: transform 10s ease;
+                    z-index: 1;
+                }
+
+                &.active {
+                    >img {
+                        transform: translate(-50%, -50%) scale(1.2);
+                    }
+                }
+
+                .carousel-caption {
+                    @include position($t: 50%, $z: 3);
+                    transform: translateY(-50%);
+
+                    .box {
+                        @include size(400px, auto);
+                        text-align: start;
+                        padding: 10px 0;
+
+                        @include responsive(350) {
+                            @include size(280px, auto);
+                        }
+
+                        h1 {
+                            font-size: clamp(25px, 6vw, 50px);
+                            font-weight: 700;
+                            letter-spacing: -2px;
+
+                            background: linear-gradient(100deg,
+                                    #fff 0%,
+                                    #10B981 40%,
+                                    #D9FF66 70%,
+                                    #000 100%);
+
+                            -webkit-background-clip: text;
+                            background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            color: transparent;
+                        }
+
+                        .overview {
+                            color: var(--text-muted);
+                        }
+
+                        p {
+                            text-shadow:
+                                rgba(50, 50, 93, 0.25) 0 50px 100px -20px,
+                                rgba(255, 255, 255, 0.3) 0 30px 60px -30px;
+                            color: var(--accent-color);
+                        }
+                    }
+                }
+            }
+        }
+
+        .carousel-control-next,
+        .carousel-control-prev {
+            position: absolute;
+            top: initial;
+            bottom: 20px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 50px;
+            padding: 10px;
+            color: var(--accent-color);
+            border: 0;
+            opacity: 1;
+
+            i {
+                font-size: 30px;
+            }
+        }
+
+        .carousel-control-prev {
+            left: initial;
+            right: 65px;
+        }
+    }
+}
